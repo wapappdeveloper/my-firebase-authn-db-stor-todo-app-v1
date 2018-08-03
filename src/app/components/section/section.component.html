@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="welcome-holder">
+    <div class="yellow-box shadow">
+      <div class="logo-holder">
+        <app-logo [big]="true"></app-logo>
+      </div>
+      <span class="welcome-text text-shadow">{{params.section.topText}}</span>
+      <span class="start shadow disable-select" (click)="navigateTo(params.section.page)">{{params.section.buttonText}}</span>
+      <span class="welcome-footer">{{params.section.bottomText}}</span>
+    </div>
+  </div>
+</div>

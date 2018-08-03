@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="header-holder">
+    <div class="header-left disable-select" (click)="navigateTo('back')">
+      <div class="header-left-text disable-select">&#x226A;</div>
+    </div>
+    <div class="header-center">
+      <div class="header-message">{{params.header | uppercase}}</div>
+    </div>
+    <div class="header-right disable-select" (click)="openCloseActions()">
+      <div class="header-dot-top"></div>
+      <div class="header-dot-bottom"></div>
+    </div>
+    <div class="actions-container" [class.expand]="actionStatus" [class.shrink]="!actionStatus">
+      <div class="actions-holder" [class.open]="actionStatus && enableActions" [class.close]="!actionStatus && enableActions" *ngIf="data.validUser">
+        <div class="action" *ngFor="let action of actions;let i=index" (click)="callAction(action, i)" [hidden]="action.page === params.page">
+          <div class="icon" [style.backgroundImage]="'url(assets/pngs/'+action.icon+')'"></div>
+          <span class="label">{{action.label}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

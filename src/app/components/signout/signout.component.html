@@ -1,0 +1,3 @@
+<!--<app-header (emitter)="emitter($event)" [params]="params"></app-header>-->
+<app-loader *ngIf="loading"></app-loader>
+<app-section *ngIf="!loading" (emitter)="emitter($event)" [params]="params"></app-section>

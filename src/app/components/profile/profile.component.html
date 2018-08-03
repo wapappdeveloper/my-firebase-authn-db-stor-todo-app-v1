@@ -1,0 +1,52 @@
+<app-header (emitter)="emitter($event)" [params]="params"></app-header>
+<div class="wrapper">
+    <div class="form-holder shadow" *ngIf="page_1">
+        <app-loader *ngIf="loading"></app-loader>
+        <div class="photo-holder">
+            <div class="photo" [class.profile-photo]="data.userDetail.profileImagePath!==''" [style.background-image]="data.userDetail.profileImagePath!=='' && sanitizeStyleURL(data.userDetail.profileImagePath)">
+                <app-loader [css]="{top:'18px',right:'18px'}" *ngIf="profileImageLoading"></app-loader>
+            </div>
+            <div class="photo-label-holder">
+                <span class="photo-label">PHOTO</span>&nbsp;
+                <span>
+                    <input type="file" name="file" id="file" class="inputfile" style="display:none" (change)="onChange($event)">
+                    <label for="file" class="photo-text">ADD</label>
+                </span>&nbsp;
+                <!--<span class="photo-text">
+                    <label class="photo-text" (click)="removeProfileImage()">REMOVE</label>
+                </span>-->
+            </div>
+        </div>
+        <div *ngIf="error.profileImagePathIsError" class="error">{{error.profileImagePathAlert}}</div>
+        <span class="label-text">PROFILE NAME</span>
+        <input type="text" class="input-text" required [(ngModel)]="data.userDetail.profileName" maxlength="25" (change)="dataChanged()" autofocus>
+        <div *ngIf="error.profileNameIsError" class="error">{{error.profileNameAlert}}</div>
+        <span class="label-text">BIRTHDAY</span>
+        <input type="text" class="input-text" required [(ngModel)]="data.userDetail.birthday" (change)="dataChanged()">
+        <div *ngIf="error.birthdayIsError" class="error">{{error.birthdayAlert}}</div>
+        <span class="label-text">GENDER</span>
+        <div class="radio-holder">
+            <input type="radio" required name="gender" value="male" [(ngModel)]="data.userDetail.gender" class="input-radio" (change)="dataChanged()">
+            <span class="male">MALE</span>
+            <input type="radio" required name="gender" value="female" [(ngModel)]="data.userDetail.gender" class="input-radio female"
+                (change)="dataChanged()">
+            <span class="female">FEMALE</span>
+        </div>
+        <div *ngIf="error.genderIsError" class="error">{{error.genderAlert}}</div>
+        <div class="button disable-select" (click)="submit()">
+            <span class="button-text disable-select">SAVE</span>
+        </div>
+    </div>
+    <div class="form-holder shadow" *ngIf="page_2">
+        <div class="photo-holder">
+            <div class="photo photo-final" [class.profile-photo]="data.userDetail.profileImagePath!==''" [style.background-image]="sanitizeStyleURL(data.userDetail.profileImagePath)">
+                <div class="no-photo" *ngIf="data.userDetail.profileImagePath==''">{{data.userDetail.profileName.charAt(0)}}</div>
+            </div>
+        </div>
+        <span class="label-text align-center">PROFILE NAME</span>
+        <span class="profile-name align-center text-shadow">{{data.userDetail.profileName}}</span>
+        <div class="button disable-select" (click)="edit()">
+            <span class="button-text disable-select">EDIT</span>
+        </div>
+    </div>
+</div>

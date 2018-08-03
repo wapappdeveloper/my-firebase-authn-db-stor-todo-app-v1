@@ -1,0 +1,62 @@
+<div class="comp-container" (mouseup)="tempToDoListItem && mouseup($event)" (mouseleave)="tempToDoListItem && mouseup($event)" (mousemove)="tempToDoListItem && mousemove($event)" (touchmove)="mousemove($event)" (touchend)="mouseup($event)">
+  <header>
+    <div class="title">To-Do APP</div>
+    <div class="add no-selection" (click)="showCloseToDoModel()">
+      <span id="plus-icon" [class.rotate0]="!todoModel" [class.rotate45]="todoModel">+</span>
+    </div>
+  </header>
+
+  <main class="hide-scroll">
+    <div class="todo-list-container" [class.remove-scrollgap]="touchDevice">
+      <div class="todo-list-holder real" *ngFor="let todoItem of todoListArray; let i=index" [class.hilight]="todoItem.hilight" (mousedown)="mousedown($event, todoItem)" (touchstart)="mousedown($event, todoItem)">
+        <div class="btn-holder no-selection">
+          <div class="btn-align-right">
+            <div class="btn move-btn no-selection"></div>
+            <div class="btn delete-btn no-selection" (click)="delete(todoItem)"></div>
+            <div class="btn no-selection" [class.add-btn]="todoItem.contentEditable" [class.edit-btn]="!todoItem.contentEditable" (click)="edit($event, todoItem)"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="title-label">Title:</div>
+        <div class="todo-input-title" *ngIf="!todoItem.contentEditable">{{todoItem.title}}</div>
+        <div class="todo-input-content listed" *ngIf="!todoItem.contentEditable">{{todoItem.content}}</div>
+        <input class="todo-input-title" *ngIf="todoItem.contentEditable" [value]="todoItem.title" [(ngModel)]="todoItem.title">
+        <textarea class="todo-input-content listed" *ngIf="todoItem.contentEditable" [value]="todoItem.content" [(ngModel)]="todoItem.content"></textarea>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </main>
+
+  <main class="todo-model" [class.show-me]="todoModel" [class.hide-me]="!todoModel" *ngIf="todoModelActivate" id="todo-model">
+    <div class="todo-input-model">
+      <div class="todo-input-holder" id="add-todo-holder">
+        <div class="title-label">Title:</div>
+        <input type="text" class="todo-input-title" [(ngModel)]="title" autofocus>
+        <textarea class="todo-input-content" [(ngModel)]="content"></textarea>
+        <div class="btn-holder no-selection">
+          <div class="btn-align-right">
+            <div class="btn clear-btn no-selection" (click)="clearFocussedInput()"></div>
+            <div class="btn delete-btn no-selection" (click)="showCloseToDoModel()"></div>
+            <div class="btn add-btn no-selection" (click)="addToDoTask()"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="todo-list-holder temp" *ngIf="tempToDoListItem" [ngStyle]="{'top':tempToDoListItemCoordinates.top+'px','left':tempToDoListItemCoordinates.left+'px'}">
+    <div class="btn-holder no-selection">
+      <div class="btn-align-right">
+        <div class="btn move-btn no-selection"></div>
+        <div class="btn delete-btn no-selection"></div>
+        <div class="btn no-selection"></div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="title-label">Title:</div>
+    <div class="todo-input-title">{{tempTitle}}</div>
+    <div class="todo-input-content listed">{{tempContent}}</div>
+    <div class="clear"></div>
+  </div>
+</div>

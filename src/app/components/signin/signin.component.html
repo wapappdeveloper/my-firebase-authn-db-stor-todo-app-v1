@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="header-holder">
+    <app-logo [small]="true"></app-logo>
+  </div>
+  <div class="form-holder shadow" *ngIf="!autoSignInloading">
+    <app-loader *ngIf="loading"></app-loader>
+    <span class="label-text" >EMAIL</span>
+    <input required type="email" class="input-text" [(ngModel)]="email" email="true" name="email" required autofocus>
+    <div *ngIf="error.emailIsError" class="error">{{error.emailAlert}}</div>
+    <span class="label-text" >PASSWORD</span>
+    <input required type="password" class="input-text" [(ngModel)]="password" name="password" required (keydown.enter)="submit()">
+    <div *ngIf="error.passwordIsError" class="error">{{error.passwordAlert}}</div>
+    <input type="button" class="forget-password" value="Forgot Password" (click)="forgotPassword()">
+    <div *ngIf="info.forgotPasswordIsOn" class="alert">{{info.forgotPasswordInfo}}</div>
+    <div class="button" (click)="submit()">
+      <span class="button-text">Get Started</span>
+    </div>
+  </div>
+  <div class="loader-holder" *ngIf="autoSignInloading">
+    <div class="loader shadow"></div>
+  </div>
+  <div class="footer">
+    <div class="left" (click)="navigateTo('/signup')">Create Account</div>
+    <div class="right" (click)="navigateTo('/info')">Info</div>
+  </div>
+</div>

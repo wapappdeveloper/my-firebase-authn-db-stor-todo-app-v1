@@ -1,0 +1,50 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+//$bg-triangle-color:#b9a2ea;
+//$bg-color:#C8B3F7;
+$bg-triangle-color:#ecb041;
+$bg-color:#f5bd58;
+$window-height:100%;
+
+html, body, .container, .holder{
+    box-sizing: border-box;
+    width:100%;
+    max-width:100%;
+    height:100%;
+    overflow:auto;
+    min-height:$window-height;
+}
+.wrapper{
+    position: relative;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height:100%;
+    max-height:100%;
+    margin:0 auto;
+    max-width: 800px;
+}
+.bg-plain{
+    position: absolute;
+    top:0;
+    width:100%;
+    max-width:100%;
+    height:100%;
+    min-height:$window-height;
+    background: $bg-color;
+}
+.bg-triangle{
+    position: absolute;
+    top:0;
+    width:0;
+    height:0;
+    border-top: 0 solid transparent;
+    border-bottom: 300px solid transparent;
+    border-left: 300px solid $bg-triangle-color;
+}

@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="header-holder">
+    <app-logo [small]="true"></app-logo>
+  </div>
+  <div class="form-holder shadow">
+    <app-loader *ngIf="loading"></app-loader>
+    <span class="label-text">EMAIL</span>
+    <input required type="email" class="input-text" [(ngModel)]="email" name="email" autofocus>
+    <div *ngIf="error.emailIsError" class="error">{{error.emailAlert}}</div>
+    <span class="label-text" >PASSWORD</span>
+    <input required type="password" class="input-text" [(ngModel)]="password" name="password">
+    <div *ngIf="error.passwordIsError" class="error">{{error.passwordAlert}}</div>
+    <span class="label-text" >CONFIRM PASSWORD</span>
+    <input required type="password" class="input-text" [(ngModel)]="confirmPassword" name="confirm-password">
+    <div *ngIf="error.confirmPasswordIsError" class="error">{{error.confirmPasswordAlert}}</div>
+    <div class="button" (click)="submit()">
+      <span class="button-text">Create Account</span>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="left" (click)="navigateTo('/signin')">Sign In</div>
+    <div class="right" (click)="navigateTo('/info')">Info</div>
+  </div>
+</div>

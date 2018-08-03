@@ -1,0 +1,18 @@
+<app-header (emitter)="emitter($event)" [params]="params"></app-header>
+<div class="wrapper">
+  <div class="header-holder">
+    <app-logo [small]="true"></app-logo>
+  </div>
+  <div class="form-holder shadow">
+    <app-loader *ngIf="loading" [css]="{borderColor:'red'}"></app-loader>
+    <span class="label-text">EMAIL</span>
+    <input required type="email" class="input-text" [(ngModel)]="email" name="email" disabled>
+    <div *ngIf="error.emailIsError" class="error">{{error.emailAlert}}</div>
+    <span class="label-text" >PASSWORD</span>
+    <input required type="password" class="input-text" [(ngModel)]="password" name="password" autofocus>
+    <div *ngIf="error.passwordIsError" class="error">{{error.passwordAlert}}</div>
+    <div class="button" (click)="submit()">
+      <span class="button-text">Delete Account</span>
+    </div>
+  </div>
+</div>
